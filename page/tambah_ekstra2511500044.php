@@ -5,39 +5,38 @@ include "config/koneksi.php"
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Tambah Ekstrakurikuler</h1>
+                <h1 class="m-0 text-dark">Tambah Data Extrakulikuler</h1>
             </div>
         </div>
     </div>
 </div>
 
 <?php
-$kd = $_GET['Id'];
-    $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM ekstra2511500044 WHERE id_ekstra='$kd'"));
 
-    if(isset($_POST['tambah'])){
-        $id_ekstra = $_POST['id_ekstra'];
-        $nama_ekstra = $_POST['nama_ekstra'];
-        $ket = $_POST['ket'];
-        $semester = $_POST['semester'];
-        $thn_ajaran = $_POST['thn_ajaran'];
+if (isset($_POST['tambah'])) {
+    $id_ekstra044 = $_POST['id_ekstra044'];
+    $nama_ekstra044 = $_POST['nama_ekstra044'];
+    $ket044 = $_POST['ket044'];
+    $semester044 = $_POST['semester044'];
+    $thn_ajaran044 = $_POST['thn_ajaran044'];
 
-        $insert = mysqli_query($koneksi, "UPDATE ekstra2511500044 SET id_ekstra='$id_ekstra', nama_ekstra='$nama_ekstra', ket='$ket', semester='$semester', thn_ajaran='$thn_ajaran' WHERE id_ekstra='$kd'");
-        if ($insert) {
-            echo '<div class="alert alert-info alert-dismissible">
+    $insert = mysqli_query($koneksi, "INSERT INTO ekstra_2511500044 (id_ekstra044, nama_ekstra044, ket044, semester044, thn_ajaran044) 
+    VALUES ('$id_ekstra044', '$nama_ekstra044', '$ket044', '$semester044', '$thn_ajaran044')")
+    or die (mysqli_error($koneksi));
+    if ($insert) {
+        echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
             <h5><i class="icon fas fa-info"></i> Info</h5>
             <h4>Berhasil Di Simpan</h4></div>';
-            echo '<meta http-equiv="refresh" content="1;url=index.php?page=ekstra">';
-        } else {
-            echo '<div class="alert alert-warning alert-dismissible">
+        echo '<meta http-equiv="refresh" content="1;url=index.php?page=ekstra2511500051">';
+    } else {
+        echo '<div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
                 <h5><i class="icon fas fa-info"></i> Info</h5>
                 <h4>Gagal Di Simpan</h4>
             </div>';
-        }
     }
-
+}
 ?>
 <section class="content">
     <div class="container-fluid">
@@ -45,35 +44,33 @@ $kd = $_GET['Id'];
             <div class="card-body">
                 <div class="card-body p-2">
                     <form method="POST" action="">
-                        <div class="form-group">
-                            <label for="id_ekstra">Id Ekstrakurikuler:</label>
-                            <input type="number" name="id_ekstra" value="<?= $edit['id_ekstra']; ?>" placeholder="Masukkan Id Ekstrakurikuler" class="form-control" readonly>
+                        <div class="form-group
+                        ">
+                            <label for="id_ekstra044">Id Extrakulikuler:</label>
+                            <input type="text" name="id_ekstra044"  placeholder="Masukkan Id Extrakulikuler" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="nama_ekstra">Nama Ekstrakurikuler:</label>
-                            <input type="text" name="nama_ekstra" id="nama_ekstra" value="<?= $edit['nama_ekstra']; ?>" placeholder="Masukkan Nama Ekstrakurikuler" class="form-control">
+                            <label for="nama_ekstra044">Nama Extrakulikuler:</label>
+                            <input type="text" name="nama_ekstra044" id="nama_ekstra044" placeholder="Masukkan Nama Extrakulikuler" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="ket">Keterangan:</label>
-                            <input type="text" name="ket" id="ket" value="<?= $edit['ket']; ?>" placeholder="Masukkan Keterangan" class="form-control">
+                            <label for="ket044">Keterangan:</label>
+                            <input type="text" name="ket044" id="ket044" placeholder="Masukkan Keterangan" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="semester">Semester:</label>
-                            <input type="text" name="semester" id="semester" value="<?= $edit['semester']; ?>" placeholder="Masukkan Semester" class="form-control">
+                            <label for="semester044">Semester:</label>
+                            <input type="text" name="semester044" id="semester044" placeholder="Masukkan Semester" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="thn_ajaran">Tahun Ajaran:</label>
-                            <input type="text" name="thn_ajaran" id="thn_ajaran" value="<?= $edit['thn_ajaran']; ?>" placeholder="Masukkan Tahun Ajaran" class="form-control">
+                            <label for="thn_ajaran044">Tahun Ajaran:</label>
+                            <input type="text" name="thn_ajaran044" id="thn_ajaran044" placeholder="Masukkan Tahun Ajaran" class="form-control">
                         </div>
                         <div class="card-footer">
                             <input type="submit" name="tambah" class="btn btn-primary" value="Simpan">
-                            <a href="index.php?page=ekstra" class="btn btn-danger">Batal</a>
+                            <a href="index.php?page=ekstra2511500044" class="btn btn-danger">Batal</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</section>
-
-       
