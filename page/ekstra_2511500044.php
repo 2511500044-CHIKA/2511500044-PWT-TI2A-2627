@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php"
+include "config/koneksi.php";
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -20,7 +20,7 @@ if (isset($_GET['action'])) {
             echo '
             <div class="alert alert-warning alert-dismissible">
                 Berhasil Di Hapus</div>';
-            echo '<meta http-equiv="refresh" content="1;url=index.php?page=ekstra2511500044">';
+            echo '<meta http-equiv="refresh" content="1;url=index.php?page=ekstra_2511500044">';
         }
     }
 }
@@ -58,7 +58,7 @@ if (isset($_GET['action'])) {
                                 <td><?= $result['semester044']; ?></td>
                                 <td><?= $result['thn_ajaran044']; ?></td>
                                 <td>
-                                    <a href="index.php?page=ekstra2511500044&action=hapus&Id=<?= $result['id_ekstra044']; ?>" title ="">
+                                    <a href="index.php?page=ekstra_2511500044&action=hapus&Id=<?= $result['id_ekstra044']; ?>" title ="">
                                             <span class=" badge badge-danger">Hapus</span></a>
                                     <a href="index.php?page=edit_ekstra2511500044&Id=<?= $result['id_ekstra044']; ?>" title="">
                                         <span class="badge badge-warning">Edit</span></a>
