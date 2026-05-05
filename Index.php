@@ -1,5 +1,5 @@
 <?php
-ob_start(); 
+ob_start();
 session_start();
 require_once("config/koneksi.php");
 if (isset($_SESSION['Username'])) {
@@ -84,10 +84,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="dist/img/photo1.png" class="img-circle elevation-2" alt="User Image">
+              <img src="dist/img/chika.jpeg" class="img-circle elevation-2" alt="">
             </div>
             <div class="info">
-              <a href="#" class="d-block">Chikka Zayin Salsabilla</a>
+              <a href="#" class="d-block">Chika Zayin Salsabilla</a>
             </div>
           </div>
 
@@ -177,27 +177,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1 class="m-0">
-                  <?php
-                  $page = $_GET['page'] ?? '';
-
-                  if ($page == 'guru') {
-                    echo "Data Guru";
-                  } elseif ($page == 'mapel') {
-                    echo "Mata Pelajaran";
-                  } elseif ($page == 'kelas') {
-                    echo "Kelas";
-                  } elseif ($page == 'jadwal_kelas') {
-                    echo "Jadwal kelas";
-                  } elseif ($page == 'detail_jadwal') {
-                    echo "Detail jadwal";
-                  } elseif ($page == 'siswa') {
-                    echo "Siswa";
-                  } else {
-                    echo "Home";
-                  }
-                  ?>
-                </h1>
+                <h1 class="m-0">Starter Page</h1>
               </div><!-- /.col -->
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -215,78 +195,66 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="container-fluid">
             <div class="row">
               <div class="col-lg-12">
-                <?php
-                $page = $_GET['page'] ?? '';
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Dashboard</h5>
 
-                if ($page == 'guru') {
-                  include 'guru/index.php';
-                } elseif ($page == 'tambah_guru') {
-                  include 'guru/tambah.php';
-                } elseif ($page == 'mapel') {
-                  include 'mapel/index.php';
-                } elseif ($page == 'tambah_mapel') {
-                  include 'mapel/tambah.php';
-                } elseif ($page == 'kelas') {
-                  include 'kelas/index.php';
-                } elseif ($page == 'tambah_kelas') {
-                  include 'kelas/tambah.php';
-                } elseif ($page == 'jadwal_kelas') {
-                  include 'jadwal_kelas/index.php';
-                } elseif ($page == 'tambah_jadwal_kelas') {
-                  include 'jadwal_kelas/tambah.php';
-                } elseif ($page == 'detail_jadwal') {
-                  include 'detail_jadwal/index.php';
-                } elseif ($page == 'tambah_detail_jadwal') {
-                  include 'detail_jadwal/tambah.php';
-                } elseif ($page == 'siswa') {
-                  include 'siswa/index.php';
-                } elseif ($page == 'tambah_siswa') {
-                  include 'siswa/tambah.php';
-                } else {
-                  echo "<h4>Silakan pilih menu di samping</h4>";
-                }
-                ?>
+                    <p class="card-text">
+                      <?php
+                      if (isset($_GET['page'])) {
+                        $page = $_GET['page'];
+                      } else {
+                        $page = "";
+                      }
+                      if($page == ""){
+                        include "page/dashboard.php";
+                      } elseif (!file_exists("page/$page.php")) {
+                        echo "<h4>file tidak ditemukan</h4>";
+                      } else {
+                        include "page/$page.php";
+                      }
+                      ?>
 
-              </div>
-              <!-- /.col-md-6 -->
+                  </div>
+                  <!-- /.col-md-6 -->
+                </div>
+                <!-- /.row -->
+              </div><!-- /.container-fluid -->
             </div>
-            <!-- /.row -->
-          </div><!-- /.container-fluid -->
+            <!-- /.content -->
+          </div>
+          <!-- /.content-wrapper -->
+
+          <!-- Control Sidebar -->
+          <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+              <h5>Title</h5>
+              <p>Sidebar content</p>
+            </div>
+          </aside>
+          <!-- /.control-sidebar -->
+
+          <!-- Main Footer -->
+          <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+              Anything you want
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+          </footer>
         </div>
-        <!-- /.content -->
-      </div>
-      <!-- /.content-wrapper -->
+        <!-- ./wrapper -->
 
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-        <div class="p-3">
-          <h5>Title</h5>
-          <p>Sidebar content</p>
-        </div>
-      </aside>
-      <!-- /.control-sidebar -->
+        <!-- REQUIRED SCRIPTS -->
 
-      <!-- Main Footer -->
-      <footer class="main-footer">
-        <!-- To the right -->
-        <div class="float-right d-none d-sm-inline">
-          Anything you want
-        </div>
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-      </footer>
-    </div>
-    <!-- ./wrapper -->
-
-    <!-- REQUIRED SCRIPTS -->
-
-    <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
+        <!-- jQuery -->
+        <script src="plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="dist/js/adminlte.min.js"></script>
   </body>
 
   </html>
