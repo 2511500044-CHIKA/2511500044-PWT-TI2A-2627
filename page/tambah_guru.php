@@ -21,17 +21,11 @@ if (isset($_POST['tambah'])) {
     $Hp = $_POST['Hp'];
     $Alamat = $_POST['Alamat'];
 
-    // insert user
-    mysqli_query($koneksi, "INSERT INTO users (Username, Password, Role) VALUES ('$Kd_guru', '1234', 'guru')") 
-    or die(mysqli_error($koneksi));
-
-    $id_user = mysqli_insert_id($koneksi);
-
-    // insert guru
-    $insert = mysqli_query($koneksi, "INSERT INTO guru 
-    (Kd_guru, id_user, Nm_guru, Jenkel, Pend_terakhir, Hp, Alamat)  VALUES ('$Kd_guru', '$id_user', '$Nm_guru', '$Jenkel', '$Pend_terakhir', '$Hp', '$Alamat')")
-    or die(mysqli_error($koneksi));
-if ($insert) {
+    $insert = mysqli_query($koneksi, "INSERT INTO guru (Kd_guru, Nm_guru, Jenkel, Pend_terakhir, Hp, Alamat) VALUES ('$Kd_guru', '$Nm_guru', '$Jenkel', '$Pend_terakhir', '$Hp', '$Alamat')")
+    or die (mysqli_error($koneksi));
+    $insertusers = mysqli_query($koneksi, "INSERT INTO users (Username, Password, Role) VALUES ('$Kd_guru', '1234', 'guru')")
+    or die (mysqli_error($koneksi));
+    if ($insert) {
         echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
             <h5><i class="icon fas fa-info"></i> Info</h5>
@@ -45,7 +39,6 @@ if ($insert) {
             </div>';
     }
 }
-
 ?>
 <section class="content">
     <div class="container-fluid">
@@ -58,7 +51,6 @@ if ($insert) {
                             <label for="Kd_guru">Kode Guru:</label>
                             <input type="text" name="Kd_guru"  placeholder="Masukkan Kode Guru" class="form-control">
                         </div>
-                        
                         <div class="form-group">
                             <label for="Nm_guru">Nama Guru:</label>
                             <input type="text" name="Nm_guru" id="Nm_guru" placeholder="Masukkan Nama Guru" class="form-control">
@@ -82,8 +74,8 @@ if ($insert) {
 
                         </div>
                         <div class="form-group">
-                            <label for="Hp">No HP:</label>
-                            <input type="text" name="Hp" id="Hp" placeholder="Masukkan No HP" class="form-control">
+                            <label for="Hp">HP:</label>
+                            <input type="text" name="Hp" id="Hp" placeholder="Masukkan HP" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Alamat">Alamat:</label>

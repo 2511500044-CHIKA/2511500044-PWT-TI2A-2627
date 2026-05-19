@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "config/koneksi.php"
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -12,24 +12,16 @@ include "config/koneksi.php";
 </div>
 
 <?php
-if (isset($_POST['tambah'])) {
-    $Id_kelas = $_POST['Id_kelas'];
-    $Thn_ajaran = $_POST['Thn_ajaran'];
-    $Semester = $_POST['Semester'];
-
-    $insert = mysqli_query($koneksi, "INSERT INTO jadwal_kelas (Id_kelas, Thn_ajaran, Semester) VALUES ('$Id_kelas', '$Thn_ajaran', '$Semester')");
-    if ($insert) {
-        echo '<div class="alert alert-info alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
-        <h5><i class="icon fas fa-info"></i> Info</h5>
-        <h4>Berhasil Di Simpan</h4></div>';
-        echo '<meta http-equiv="refresh" content="1;url=index.php?page=jadwal_kelas">';
-    } else {
-        echo '<div class="alert alert-warning alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
-            <h5><i class="icon fas fa-info"></i> Info</h5>
-            <h4>Gagal Di Simpan</h4>
-        </div>';
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == "hapus") {
+        $kd = $_GET['kd'];
+        $query = mysqli_query($koneksi, "DELETE FROM jadwal_Kelas WHERE Id_jadwal='$kd'");
+        if ($query) {
+            echo '
+            <div class="alert alert-warning alert-dismissible">
+                Berhasil Di Hapus</div>';
+            echo '<meta http-equiv="refresh" content="1;url=index.php?page=jadwal_kelas">';
+        }
     }
 }
 ?>
@@ -64,8 +56,8 @@ if (isset($_POST['tambah'])) {
                                 <td><?= $result['Thn_ajaran']; ?></td>
                                 <td><?= $result['Semester']; ?></td>
                                 <td>
-                                    <a href="index.php?page=jadwal_kelas&action=hapus&kd=<?= $result['Id_jadwal']; ?>" title ="">
-                                            <span class=" badge badge-danger">Hapus</span></a>
+                                    <a href="index.php?page=jadwal_kelas&action=hapus&kd=<?= $result['Id_jadwal']; ?>" title="">
+                                        <span class=" badge badge-danger">Hapus</span></a>
                                     <a href="index.php?page=edit_jadwal_kelas&kd=<?= $result['Id_jadwal']; ?>" title="">
                                         <span class="badge badge-warning">Edit</span></a>
                                 </td>

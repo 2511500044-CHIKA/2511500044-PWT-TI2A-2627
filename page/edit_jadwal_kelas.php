@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php"
+include "config/koneksi.php";
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -11,8 +11,8 @@ include "config/koneksi.php"
     </div>
 </div>
 
-<?php
-$kd = $_GET['kd'];
+    <?php
+    $kd = $_GET['kd'];
     $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM Jadwal_Kelas WHERE Id_jadwal='$kd'"));
 
     if(isset($_POST['tambah'])){
@@ -47,11 +47,11 @@ $kd = $_GET['kd'];
                         <div class="form-group
                         ">
                             <label for="Id_jadwal">Id Jadwal:</label>
-                            <input type="text" name="Id_jadwal" value="<?= $edit['Id_jadwal']; ?>" placeholder="Masukkan Id Jadwal" class="form-control" readonly>
+                            <input type="number" name="Id_jadwal" value="<?= $edit['Id_jadwal']; ?>" placeholder="Masukkan Id Jadwal" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label for="Id_kelas">Id Kelas:</label>
-                            <input type="text" name="Id_kelas" id="Id_kelas" value="<?= $edit['Id_kelas']; ?>" placeholder="Masukkan Id Kelas" class="form-control">
+                            <input type="number" name="Id_kelas" id="Id_kelas" value="<?= $edit['Id_kelas']; ?>" placeholder="Masukkan Id Kelas" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Thn_ajaran">Tahun Ajaran:</label>

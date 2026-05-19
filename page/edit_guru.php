@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php"
+include "config/koneksi.php";
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -11,20 +11,19 @@ include "config/koneksi.php"
     </div>
 </div>
 
-<?php
- $kd = $_GET['kd'];
+    <?php
+    $kd = $_GET['kd'];
     $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM guru WHERE Kd_guru='$kd'"));
 
     if(isset($_POST['tambah'])){
         $kd_guru = $_POST['kd_guru'];
-        $Id_user = $_POST['Id_user'];
         $Nm_guru = $_POST['Nm_guru'];
         $Jenkel = $_POST['Jenkel'];
         $Pend_terakhir = $_POST['Pend_terakhir'];
         $Hp = $_POST['Hp'];
         $Alamat = $_POST['Alamat'];
 
-        $insert = mysqli_query($koneksi, "UPDATE guru SET Id_user='$Id_user', Nm_guru='$Nm_guru', Jenkel='$Jenkel', Pend_terakhir='$Pend_terakhir', Hp='$Hp', Alamat='$Alamat' WHERE Kd_guru='$kd_guru'");
+        $insert = mysqli_query($koneksi, "UPDATE guru SET Kd_guru='$kd_guru', Nm_guru='$Nm_guru', Jenkel='$Jenkel', Pend_terakhir='$Pend_terakhir', Hp='$Hp', Alamat='$Alamat' WHERE Kd_guru='$kd_guru'");
         if ($insert) {
             echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
@@ -47,14 +46,9 @@ include "config/koneksi.php"
             <div class="card-body">
                 <div class="card-body p-2">
                     <form method="POST" action="">
-                        <div class="form-group
-                        ">
-                            <label for="Kd_guru">Kode Guru:</label>
-                            <input type="number" name="kd_guru" value="<?= $edit['Kd_guru']; ?>" placeholder="Masukkan Kode Guru" class="form-control" >
-                        </div>
                         <div class="form-group">
-                            <label for="Id_user">Id User:</label>
-                            <input type="text" name="Id_user" id="Id_user" value="<?= $edit['Id_user']; ?>" placeholder="Masukkan Id User" class="form-control">    
+                            <label for="Kd_guru">Kode Guru:</label>
+                            <input type="number" name="Kd_guru" value="<?= $edit['Kd_guru']; ?>" placeholder="Masukkan Kode Guru" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label for="Nm_guru">Nama Guru:</label>
@@ -70,7 +64,14 @@ include "config/koneksi.php"
                         </div>
                         <div class="form-group">
                             <label for="Pend_terakhir">Pendidikan Terakhir:</label>
-                            <input type="text" name="Pend_terakhir" id="Pend_terakhir" value="<?= $edit['Pend_terakhir']; ?>" placeholder="Masukkan Pendidikan Terakhir" class="form-control">
+                            <select name="Pend_terakhir" id="Pend_terakhir" class="form-control">
+                                <option value="">Pilih Pendidikan Terakhir</option>
+                                <option value="SMA" <?= ($edit['Pend_terakhir'] == 'SMA') ? 'selected' : ''; ?>>SMA</option>
+                                <option value="D3" <?= ($edit['Pend_terakhir'] == 'D3') ? 'selected' : ''; ?>>D3</option>
+                                <option value="S1" <?= ($edit['Pend_terakhir'] == 'S1') ? 'selected' : ''; ?>>S1</option>
+                                <option value="S2" <?= ($edit['Pend_terakhir'] == 'S2') ? 'selected' : ''; ?>>S2</option>
+                                <option value="S3" <?= ($edit['Pend_terakhir'] == 'S3') ? 'selected' : ''; ?>>S3</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="Hp">No HP:</label>

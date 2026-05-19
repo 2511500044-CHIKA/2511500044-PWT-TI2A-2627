@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php"
+include "config/koneksi.php";
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -11,8 +11,8 @@ include "config/koneksi.php"
     </div>
 </div>
 
-<?php
- $kd = $_GET['kd'];
+    <?php
+    $kd = $_GET['kd'];
     $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM siswa WHERE Nis='$kd'"));
 
     if(isset($_POST['tambah'])){

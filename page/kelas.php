@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "config/koneksi.php"
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -12,37 +12,20 @@ include "config/koneksi.php";
 </div>
 
 <?php
-//kode otomatis
-$carikode = mysqli_query($koneksi, "SELECT MAX(Id_kelas) FROM kelas") or die(mysqli_error($koneksi));
-$datakode = mysqli_fetch_array($carikode);
-if ($datakode) {
-         $nilaikode = substr($datakode[0], 2);
-    $kode = (int) $nilaikode;
-    $kode = $kode + 1;
-    $hasilkode = "K-" . str_pad($kode, 3, "0", STR_PAD_LEFT);
-} else {$hasilkode ="K-";}
-$_SESSION['KODE'] = $hasilkode;
-
-if(isset($_POST['tambah'])){
-        $kd_kelas = $_POST['Kd_kelas'];
-        $nm_kelas = $_POST['Nm_kelas'];
-
-        $insert = mysqli_query($koneksi, "INSERT INTO kelas VALUES ('$kd_kelas', '$nm_kelas')");
-        if ($insert) {
-            echo '<div class="alert alert-info alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
-            <h5><i class="icon fas fa-info"></i> Info</h5>
-            <h4>Berhasil Di Simpan</h4></div>';
+if(isset($_GET['action'])) {
+    if($_GET['action'] == "hapus") {
+        $Id =$_GET['Id'];
+        $query = mysqli_query($koneksi, "DELETE FROM kelas WHERE Id_kelas ='$Id'");
+        if ($query) {
+            echo '
+            <div class="alert alert-warning alert-dismissible">
+            Berhasil di hapus</div>';
             echo '<meta http-equiv="refresh" content="1;url=index.php?page=kelas">';
-        } else {
-            echo '<div class="alert alert-warning alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
-                <h5><i class="icon fas fa-info"></i> Info</h5>
-                <h4>Gagal Di Simpan</h4>
-            </div>';
         }
+    }
 }
 ?>
+   
 <div class="content">
     <div class="container-fluid">
         <div class="card">
