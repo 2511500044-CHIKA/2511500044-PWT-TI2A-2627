@@ -1,6 +1,6 @@
 
 <?php
-include "config/koneksi.php"
+include "config/koneksi.php";
 ?>
 <div class="content-header">
     <div class="container-fluid">
