@@ -18,13 +18,13 @@ $kd = $_GET['Id'];
     if(isset($_POST['tambah'])){
         $Id_jadwal = $_POST['Id_jadwal'];
         $Kd_mapel = $_POST['Kd_mapel'];
-        $Kd_guru = $_POST['Kd_guru'];
+        $Kd_guru = $_POST['Kd_kelas'];
         $Hari = $_POST['Hari'];
-        $Jam_mulai = $_POST['Jam_mulai'];
-        $Jam_selesai = $_POST['Jam_selesai'];
+        $Jam_mulai = $_POST['Jam'];
+       
 
         $insert = mysqli_query($koneksi, "UPDATE detail_jadwal SET Id_jadwal='$Id_jadwal', Kd_mapel='$Kd_mapel',
-        Kd_guru='$Kd_guru', Hari='$Hari', Jam_mulai='$Jam_mulai', Jam_selesai='$Jam_selesai' WHERE Id_jadwal='$kd'");
+        Kd_kelas='$Kd_kelas', Hari='$Hari', Jam='$Jam'  WHERE Id_jadwal='$kd'");
         if ($insert) {
             echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
@@ -57,20 +57,16 @@ $kd = $_GET['Id'];
                             <input type="text" name="Kd_mapel" id="Kd_mapel" value="<?= $edit['Kd_mapel']; ?>" placeholder="Masukkan Kode Mata Pelajaran" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Kd_guru">Kode Guru:</label>
-                            <input type="text" name="Kd_guru" id="Kd_guru" value="<?= $edit['Kd_guru']; ?>" placeholder="Masukkan Kode Guru" class="form-control">
+                            <label for="Kd_kelas">Kode KELAS:</label>
+                            <input type="text" name="Kd_kelas" id="Kd_kelas" value="<?= $edit['Kd_kelas']; ?>" placeholder="Masukkan Kode Kelas" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Hari">Hari:</label>
                             <input type="text" name="Hari" id="Hari" value="<?= $edit['Hari']; ?>" placeholder="Masukkan Hari" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Jam_mulai">Jam Mulai:</label>
-                            <input type="time" name="Jam_mulai" id="Jam_mulai" value="<?= $edit['Jam_mulai']; ?>" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="Jam_selesai">Jam Selesai:</label>
-                            <input type="time" name="Jam_selesai" id="Jam_selesai" value="<?= $edit['Jam_selesai']; ?>" class="form-control">
+                            <label for="Jam">Jam:</label>
+                            <input type="time" name="Jam" id="Jam" value="<?= $edit['Jam']; ?>" class="form-control">
                         </div>
                         <div class="card-footer">
                             <input type="submit" name="tambah" class="btn btn-primary" value="Simpan">
