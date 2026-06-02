@@ -11,31 +11,32 @@ include "config/koneksi.php";
     </div>
 </div>
 
-    <?php
-    $kd = $_GET['kd'];
-    $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM Jadwal_Kelas WHERE Id_jadwal='$kd'"));
+<?php
+$kd = $_GET['kd'];
+$edit = mysqli_fetch_array(
+    mysqli_query($koneksi, "SELECT * FROM jadwal_kelas WHERE Id_jadwal='$kd'")
+);
+if (isset($_POST['tambah'])) {
+    $kd_jadwal = $_POST['Id_jadwal'];
+    $kd_kelas = $_POST['Id_kelas'];
+    $tahun_ajaran = $_POST['Thn_ajaran'];
+    $semester = $_POST['Semester'];
 
-    if(isset($_POST['tambah'])){
-        $kd_jadwal = $_POST['Id_jadwal'];
-        $kd_kelas = $_POST['Id_kelas'];
-        $tahun_ajaran = $_POST['Thn_ajaran'];
-        $semester = $_POST['Semester'];
-
-        $insert = mysqli_query($koneksi, "UPDATE Jadwal_Kelas SET Id_kelas='$kd_kelas', Thn_ajaran='$tahun_ajaran', Semester='$semester' WHERE Id_jadwal='$kd_jadwal'");
-        if ($insert) {
-            echo '<div class="alert alert-info alert-dismissible">
+    $insert = mysqli_query($koneksi, "UPDATE jadwal_kelas SET Id_kelas='$kd_kelas',Thn_ajaran='$tahun_ajaran',Semester='$semester' WHERE Id_jadwal='$kd_jadwal'");
+    if ($insert) {
+        echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
             <h5><i class="icon fas fa-info"></i> Info</h5>
             <h4>Berhasil Di Simpan</h4></div>';
-            echo '<meta http-equiv="refresh" content="1;url=index.php?page=jadwal_kelas">';
-        } else {
-            echo '<div class="alert alert-warning alert-dismissible">
+        echo '<meta http-equiv="refresh" content="1;url=index.php?page=jadwal_kelas">';
+    } else {
+        echo '<div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
                 <h5><i class="icon fas fa-info"></i> Info</h5>
                 <h4>Gagal Di Simpan</h4>
             </div>';
-        }
     }
+}
 
 ?>
 <section class="content">
