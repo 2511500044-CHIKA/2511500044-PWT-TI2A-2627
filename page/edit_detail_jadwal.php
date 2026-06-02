@@ -18,13 +18,13 @@ $kd = $_GET['Id'];
     if(isset($_POST['tambah'])){
         $Id_jadwal = $_POST['Id_jadwal'];
         $Kd_mapel = $_POST['Kd_mapel'];
-        $Kd_guru = $_POST['Kd_kelas'];
+        $Nm_krlas = $_POST['Nm_kelas'];
         $Hari = $_POST['Hari'];
         $Jam_mulai = $_POST['Jam'];
        
 
         $insert = mysqli_query($koneksi, "UPDATE detail_jadwal SET Id_jadwal='$Id_jadwal', Kd_mapel='$Kd_mapel',
-        Kd_kelas='$Kd_kelas', Hari='$Hari', Jam='$Jam'  WHERE Id_jadwal='$kd'");
+        Nm_kelas='$Nm_kelas', Hari='$Hari', Jam='$Jam'  WHERE Id_jadwal='$kd'");
         if ($insert) {
             echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
@@ -57,8 +57,8 @@ $kd = $_GET['Id'];
                             <input type="text" name="Kd_mapel" id="Kd_mapel" value="<?= $edit['Kd_mapel']; ?>" placeholder="Masukkan Kode Mata Pelajaran" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Kd_kelas">Kode KELAS:</label>
-                            <input type="text" name="Kd_kelas" id="Kd_kelas" value="<?= $edit['Kd_kelas']; ?>" placeholder="Masukkan Kode Kelas" class="form-control">
+                            <label for="Nm_kelas">NAMA KELAS:</label>
+                            <input type="text" name="Nm_kelas" id="Nm_kelas" value="<?= $edit['Nm_kelas']; ?>" placeholder="Masukkan Nama Kelas" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Hari">Hari:</label>
