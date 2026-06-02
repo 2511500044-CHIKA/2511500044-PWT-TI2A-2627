@@ -101,7 +101,7 @@ if (isset($_POST['tambah'])) {
 
                                 <div class="form-group">
                                     <label>Hari:</label>
-                                    <select name="hari" class="form-control" required>
+                                    <select name="Hari" class="form-control" required>
                                         <option value="">-- Pilih Hari --</option>
                                         <option value="Senin">Senin</option>
                                         <option value="Selasa">Selasa</option>
