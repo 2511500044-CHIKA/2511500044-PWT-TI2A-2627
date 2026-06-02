@@ -132,7 +132,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <p>Guru</p>
                     </a>
                   </li>
-                </ul>
               </li>
               <li class="nav-item">
                 <a href="index.php?page=kelas" class="nav-link">
@@ -165,13 +164,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       </a>
                     </li>
                   </ul>
-                </a>
               </li>
-            </ul>
-           </li>
             <?php endif; ?>
             <?php if ($role == 'guru') : ?>
-             <ul class="nav nav pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+             <ul class="nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
               <li class="nav-item menu-open">
@@ -197,6 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <p>Ganti Password</p>
                       </a>
                     </li>
+
                     <li class="nav-item">
                       <a href="index.php?page=siswa" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
