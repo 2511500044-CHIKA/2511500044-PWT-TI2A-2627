@@ -18,9 +18,9 @@ $kd = $_GET['Id'];
     if(isset($_POST['tambah'])){
         $Id_jadwal = $_POST['Id_jadwal'];
         $Kd_mapel = $_POST['Kd_mapel'];
-        $Nm_krlas = $_POST['Nm_kelas'];
+        $Nm_kelas = $_POST['Nm_kelas'];
         $Hari = $_POST['Hari'];
-        $Jam_mulai = $_POST['Jam'];
+        $Jam = $_POST['Jam'];
        
 
         $insert = mysqli_query($koneksi, "UPDATE detail_jadwal SET Id_jadwal='$Id_jadwal', Kd_mapel='$Kd_mapel',
