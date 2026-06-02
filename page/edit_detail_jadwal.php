@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "config/koneksi.php"
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -11,9 +11,9 @@ include "config/koneksi.php";
     </div>
 </div>
 
-<?php
-$kd = $_GET['Id'];
-    $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM detail_jadwal WHERE Id_jadwal='$kd'"));
+    <?php 
+    $Id = $_GET['Id'];
+    $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM detail_jadwal WHERE Id_jadwal='$Id'"));
 
     if(isset($_POST['tambah'])){
         $Id_jadwal = $_POST['Id_jadwal'];
@@ -21,11 +21,9 @@ $kd = $_GET['Id'];
         $Nm_kelas = $_POST['Nm_kelas'];
         $Hari = $_POST['Hari'];
         $Jam = $_POST['Jam'];
-       
 
-        $insert = mysqli_query($koneksi, "UPDATE detail_jadwal SET Id_jadwal='$Id_jadwal', Kd_mapel='$Kd_mapel',
-        Nm_kelas='$Nm_kelas', Hari='$Hari', Jam='$Jam'  WHERE Id_jadwal='$kd'");
-        if ($insert) {
+        $update = mysqli_query($koneksi, "UPDATE detail_jadwal SET Kd_mapel='$Kd_mapel',Nm_kelas='$Nm_kelas',Hari='$Hari',Jam='$Jam' WHERE Id_jadwal='$Id'");
+        if ($update) {
             echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
             <h5><i class="icon fas fa-info"></i> Info</h5>
@@ -57,8 +55,8 @@ $kd = $_GET['Id'];
                             <input type="text" name="Kd_mapel" id="Kd_mapel" value="<?= $edit['Kd_mapel']; ?>" placeholder="Masukkan Kode Mata Pelajaran" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Nm_kelas">NAMA KELAS:</label>
-                            <input type="text" name="Nm_kelas" id="Nm_kelas" value="<?= $edit['Nm_kelas']; ?>" placeholder="Masukkan Nama Kelas" class="form-control">
+                            <label for="Nm_kelas">Nama Kelas:</label>
+                            <input type="text" name="Nm_kelas" id="Nm_kelas" value="<?= $edit['Nm_kelas']; ?>" placeholder="Masukkan Kode Guru" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Hari">Hari:</label>
@@ -78,4 +76,3 @@ $kd = $_GET['Id'];
         </div>
     </div>
 </section>
-    

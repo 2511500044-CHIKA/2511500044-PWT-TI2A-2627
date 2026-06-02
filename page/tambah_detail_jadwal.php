@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "config/koneksi.php"
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -61,9 +61,6 @@ if (isset($_POST['tambah'])) {
                             <label>Kode jadwal:</label>
                             <select name="id_jadwal" class="form-control" required>
                                 <option value="">-- Pilih Jadwal --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
                                 <?php
                                 $data = mysqli_query($koneksi, "SELECT * FROM jadwal_kelas");
                                 while ($d = mysqli_fetch_array($data)) {
@@ -77,10 +74,6 @@ if (isset($_POST['tambah'])) {
                                 <label>Kode Mapel:</label>
                                 <select name="Kd_mapel" class="form-control" required>
                                     <option value="">-- Pilih Mapel --</option>
-                                    <option value="Algoritma">Algoritma</option>
-                                    <option value="Pemrograman Web">Pemrograman Web</option>
-                                    <option value="Bahasa Inggris">Bahasa Inggris</option>
-
                                     <?php
                                     $data = mysqli_query($koneksi, "SELECT * FROM mapel");
                                     while ($d = mysqli_fetch_array($data)) {
@@ -95,10 +88,6 @@ if (isset($_POST['tambah'])) {
                                     <label>Nama Kelas:</label>
                                     <select name="Nm_kelas" class="form-control" required>
                                         <option value="">-- Pilih Kelas --</option>
-                                        <option value="LAB2">LAB2</option>
-                                        <option value="LAB3">LAB3</option>
-                                        <option value="2.24">2.24</option>
-                                        <option value="1.32">1.32</option>
                                         <?php
                                         $data = mysqli_query($koneksi, "SELECT * FROM kelas");
                                         while ($d = mysqli_fetch_array($data)) {
@@ -112,7 +101,7 @@ if (isset($_POST['tambah'])) {
 
                                 <div class="form-group">
                                     <label>Hari:</label>
-                                    <select name="Hari" class="form-control" required>
+                                    <select name="hari" class="form-control" required>
                                         <option value="">-- Pilih Hari --</option>
                                         <option value="Senin">Senin</option>
                                         <option value="Selasa">Selasa</option>
