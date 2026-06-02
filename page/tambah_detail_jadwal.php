@@ -33,7 +33,7 @@ if (isset($_POST['tambah'])) {
     }
     $Jam = $_POST['Jam'];
 
-    $insert = mysqli_query($koneksi, "INSERT INTO detail_jadwal(Kd_mapel, Nm_kelas, Hari, Jam, Jam_selesai)
+    $insert = mysqli_query($koneksi, "INSERT INTO detail_jadwal(Kd_mapel, Nm_kelas, Hari, Jam)
     VALUES ('$Kd_mapel', '$Nm_kelas', '$Hari', '$Jam')")
         or die(mysqli_error($koneksi));
     if ($insert) {
@@ -111,15 +111,15 @@ if (isset($_POST['tambah'])) {
                                     </select>
                                 </div>
 
-                                    <div class="form-group">
-                                        <label>Jam:</label>
-                                        <input type="time" name="Jam" class="form-control">
-                                    </div>
+                                <div class="form-group">
+                                    <label>Jam:</label>
+                                    <input type="time" name="Jam" class="form-control">
+                                </div>
 
-                                    <div class="card-footer">
-                                        <input type="submit" name="tambah" class="btn btn-primary" value="Simpan">
-                                        <a href="index.php?page=detail_jadwal" class="btn btn-danger">Batal</a>
-                                    </div>
+                                <div class="card-footer">
+                                    <input type="submit" name="tambah" class="btn btn-primary" value="Simpan">
+                                    <a href="index.php?page=detail_jadwal" class="btn btn-danger">Batal</a>
+                                </div>
 
                     </form>
                 </div>
