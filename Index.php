@@ -2,10 +2,7 @@
 ob_start();
 session_start();
 require_once("config/koneksi.php");
-if (isset($_SESSION['Username'])) {
-  $username = $_SESSION['Username'];
-  $result = mysqli_query($koneksi, "SELECT * FROM users WHERE Username='$username'");
-  $role = $result['role'];
+if (isset($_SESSION['username'])) {
 ?>
 
   <!DOCTYPE html>
@@ -87,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <img src="dist/img/chika.jpeg" class="img-circle elevation-2" alt="">
+              <img src="dist/img/diva.jpeg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
               <a href="#" class="d-block">Chika Zayin Salsabilla</a>
@@ -157,50 +154,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Detail jadwal</p>
                 </a>
               </li>
-                   <li class="nav-item">
-                      <a href="index.php?page=ekstra_2511500044" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Ekstrakurikuler</p>
-                      </a>
-                    </li>
-                  </ul>
-              </li>
-            <?php endif; ?>
-            <?php if ($role == 'guru') : ?>
-             <ul class="nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-              <!-- Add icons to the links using the .nav-icon class
-            with font-awesome or any other icon font library -->
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Master
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
+              <li class="nav-item">
+                <a href="index.php?page=ekstra2511500067" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ekstrakurikuler</p>
                 </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="index.php?page=jadwal_kelas" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Jadwal kelas</p>
-                    </a>
-                  </li>
-                  <?php endif; ?>
-                  <?php if ($role == 'siswa') : ?>
-                    <li class="nav-item">
-                      <a href="index.php?page=ganti_password" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Ganti Password</p>
-                      </a>
-                    </li>
-
-                    <li class="nav-item">
-                      <a href="index.php?page=siswa" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Users</p>
-                      </a>
-                    </li>
-                    <li class="nav-item">
+              </li>
+            </ul>
+            </li>
+            <li class="nav-item">
               <a href="logout.php" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
                 <p>
