@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php"
+include "config/koneksi.php";
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -11,19 +11,20 @@ include "config/koneksi.php"
     </div>
 </div>
 
-    <?php 
-    $Id = $_GET['Id'];
-    $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM detail_jadwal WHERE Id_jadwal='$Id'"));
+    <?php
+    $kd = $_GET['kd'];
+    $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM detail_jadwal WHERE Id_jadwal='$kd'"));
 
     if(isset($_POST['tambah'])){
         $Id_jadwal = $_POST['Id_jadwal'];
         $Kd_mapel = $_POST['Kd_mapel'];
-        $Nm_kelas = $_POST['Nm_kelas'];
+        $Kd_guru = $_POST['Kd_guru'];
         $Hari = $_POST['Hari'];
-        $Jam = $_POST['Jam'];
+        $Jam_mulai = $_POST['Jam_mulai'];
+        $Jam_selesai = $_POST['Jam_selesai'];
 
-        $update = mysqli_query($koneksi, "UPDATE detail_jadwal SET Kd_mapel='$Kd_mapel',Nm_kelas='$Nm_kelas',Hari='$Hari',Jam='$Jam' WHERE Id_jadwal='$Id'");
-        if ($update) {
+        $insert = mysqli_query($koneksi, "UPDATE detail_jadwal SET Id_jadwal='$Id_jadwal', Kd_mapel='$Kd_mapel', Kd_guru='$Kd_guru', Hari='$Hari', Jam_mulai='$Jam_mulai', Jam_selesai='$Jam_selesai' WHERE Id_jadwal='$kd'");
+        if ($insert) {
             echo '<div class="alert alert-info alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
             <h5><i class="icon fas fa-info"></i> Info</h5>
@@ -55,16 +56,20 @@ include "config/koneksi.php"
                             <input type="text" name="Kd_mapel" id="Kd_mapel" value="<?= $edit['Kd_mapel']; ?>" placeholder="Masukkan Kode Mata Pelajaran" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Nm_kelas">Nama Kelas:</label>
-                            <input type="text" name="Nm_kelas" id="Nm_kelas" value="<?= $edit['Nm_kelas']; ?>" placeholder="Masukkan Kode Guru" class="form-control">
+                            <label for="Kd_guru">Kode Guru:</label>
+                            <input type="text" name="Kd_guru" id="Kd_guru" value="<?= $edit['Kd_guru']; ?>" placeholder="Masukkan Kode Guru" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Hari">Hari:</label>
                             <input type="text" name="Hari" id="Hari" value="<?= $edit['Hari']; ?>" placeholder="Masukkan Hari" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Jam">Jam:</label>
-                            <input type="time" name="Jam" id="Jam" value="<?= $edit['Jam']; ?>" class="form-control">
+                            <label for="Jam_mulai">Jam Mulai:</label>
+                            <input type="time" name="Jam_mulai" id="Jam_mulai" value="<?= $edit['Jam_mulai']; ?>" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="Jam_selesai">Jam Selesai:</label>
+                            <input type="time" name="Jam_selesai" id="Jam_selesai" value="<?= $edit['Jam_selesai']; ?>" class="form-control">
                         </div>
                         <div class="card-footer">
                             <input type="submit" name="tambah" class="btn btn-primary" value="Simpan">
