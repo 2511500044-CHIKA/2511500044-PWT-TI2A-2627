@@ -14,7 +14,7 @@ include "config/koneksi.php";
 
 <?php
 
-if (isset($_POST['tambah'])) {
+if (isset($_GET['action'])) {
     $Id_jadwal = $_POST['Id_jadwal'];
     $Kd_mapel = $_POST['Kd_mapel'];
     $Kd_guru = $_POST['Kd_guru'];
