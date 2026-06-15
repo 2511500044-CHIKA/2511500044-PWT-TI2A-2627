@@ -2,9 +2,9 @@
 ob_start();
 session_start();
 require_once("config/koneksi.php");
-if (isset($_SESSION['username'])) {
-  $username = $_SESSION['username'];
-  $query = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username'");
+if (isset($_SESSION['usersname'])) {
+  $usersname = $_SESSION['usersname'];
+  $query = mysqli_query($koneksi, "SELECT * FROM users WHERE usersname='$usersname'");
   $result = mysqli_fetch_array($query);
   $role = $result['role'];
 ?>

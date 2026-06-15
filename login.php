@@ -32,7 +32,7 @@ session_start();
 
         <form action="login.php" method="post">
           <div class="input-group mb-3">
-            <input type="text" name="username" class="form-control" placeholder="username">
+            <input type="text" name="usersname" class="form-control" placeholder="usersname">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -73,17 +73,17 @@ session_start();
 
 </html>
 <?php
-$username = $_POST['username'] ?? null;
+$username = $_POST['usersname'] ?? null;
 $password = $_POST['password'] ?? null;
 
-if ($username == true) {
-  $userquary = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username'"));
+if ($usersname == true) {
+  $userquary = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM users WHERE usersname='$usersname'"));
 
   if ($userquary) {
 
     if ($password == $userquary['password']) {
       $_SESSION['level'] = $userquary['role'];
-      $_SESSION['username'] = $userquary['username'];
+      $_SESSION['usersname'] = $userquary['usersname'];
 
       if ($userquary['role'] == 'admin') {
         header("location:index.php");

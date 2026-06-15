@@ -11,11 +11,11 @@ include "config/koneksi.php";
 
         $p1 = $_POST['p1'];
         $pb = $_POST['pb'];
-        $username = $_SESSION['username'];
-        $cek =  mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM user WHERE username= '$username'"));
+        $username = $_SESSION['usersname'];
+        $cek =  mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM user WHERE username= '$usersname'"));
 
         if($cek){
-            $update = mysqli_query($koneksi, "UPDATE user SET password='$pb' WHERE password = '$p1' AND username = '$username'");
+            $update = mysqli_query($koneksi, "UPDATE user SET password='$pb' WHERE password = '$p1' AND usersname = '$username'");
             if($update){
                 echo "berhasil";
             }else {
