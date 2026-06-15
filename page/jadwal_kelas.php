@@ -48,12 +48,12 @@ if (isset($_GET['hapus'])) {
                     <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Id Jadwal</th>
-                                <th>Guru</th>
-                                <th>Tahun Ajaran</th>
-                                <th>Semester</th>
-                                <th>Detail Jadwal</th>
-                                <th>Aksi</th>
+                               <th style="text-align: center;">Id Jadwal</th>
+                                <th style="text-align: center;">Guru</th>
+                                <th style="text-align: center;">Tahun Ajaran</th>
+                                <th style="text-align: center;">Semester</th>
+                                <th style="text-align: center;">Detail Jadwal</th>
+                                <th style="text-align: center;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,7 +72,7 @@ if (isset($_GET['hapus'])) {
                                 $det = mysqli_query($koneksi, "SELECT d.*, m.Nm_mapel FROM detail_jadwal d JOIN mapel m ON d.kd_mapel = m.kd_mapel WHERE Id_jadwal = '{$row['Id_jadwal']}'");
 
                                 while ($d = mysqli_fetch_assoc($det)) {
-                                    echo "<li>{$d['Nm_mapel']} - {$d['Hari']} - {$d['Jam']} - {$d['Nm_kelas']}</li>";
+                                    echo "<li>{$d['Nm_mapel']} - {$d['Hari']} - {$d['Jam_mulai']} - {$d['Jam_selesai']} -{$d['Nm_kelas']}</li>";
                                 }
 
                                 echo "</ul>

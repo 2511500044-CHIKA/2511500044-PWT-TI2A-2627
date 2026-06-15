@@ -38,7 +38,8 @@ if (isset($_POST['tambah'])) {
 
     $Kd_mapel   = $_POST['Kd_mapel'] ?? [];
     $Hari       = $_POST['Hari'] ?? [];
-    $Jam        = $_POST['Jam'] ?? [];
+    $Jam_mulai  = $_POST['Jam_mulai'] ?? [];
+    $Jam_selesai = $_POST['Jam_selesai'] ?? [];
     $Nm_kelas   = $_POST['Nm_kelas'] ?? [];
 
     $insertjadwal = mysqli_query($koneksi, "INSERT INTO jadwal_kelas (Id_jadwal, Nm_guru, Thn_ajaran, Semester) VALUES ('$Id_jadwal', '$Nm_guru',
@@ -51,8 +52,8 @@ if (isset($_POST['tambah'])) {
 
     $allSuccess = true;
         for ($i = 0; $i < (is_array($Kd_mapel) ? count($Kd_mapel) : 0); $i++) {
-        $insert = mysqli_query($koneksi, "INSERT INTO detail_jadwal (Id_jadwal, Kd_mapel, Hari, Jam, Nm_kelas)
-            VALUES('$Id_jadwal','{$Kd_mapel[$i]}','{$Hari[$i]}','{$Jam[$i]}','{$Nm_kelas[$i]}')");
+        $insert = mysqli_query($koneksi, "INSERT INTO detail_jadwal (Id_jadwal, Kd_mapel, Hari, Jam_mulai, Jam_selesai, Nm_kelas)
+            VALUES('$Id_jadwal','{$Kd_mapel[$i]}','{$Hari[$i]}','{$Jam_mulai[$i]}','{$Jam_selesai[$i]}','{$Nm_kelas[$i]}')");
 
         if (!$insert) {
             $allSuccess = false;
@@ -142,19 +143,38 @@ if (isset($_POST['tambah'])) {
                                     <option>Jumat</option>
                                     <option>Sabtu</option>
                                 </select>
-                            </div>
-                            <div class="col-md-3">
-                                <select name="Jam[]" class="form-control" required>
-                                    <option selected disabled>--Pilih Jam--</option>
+                            <</div>
+                            <div class="col-md-2">
+                                <select name="Jam_mulai[]" class="form-control" required>
+                                    <option selected disabled>--Pilih J.Mulai--</option>
                                     <option>08.00-10.00</option>
                                     <option>08.00-09.30</option>
                                     <option>10.30-12.00</option>
                                     <option>12.30-14.00</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" name="Nm_kelas[]" class="form-control" placeholder="Nama Kelas" required>
+                            <div class="col-md-2">
+                                <select name="Jam_selesai[]" class="form-control" required>
+                                    <option selected disabled>--Pilih J.Selesai--</option>
+                                    <option>10.00-12.00</option>
+                                    <option>09.30-11.00</option>
+                                    <option>12.00-14.00</option>
+                                    <option>14.00-16.00</option>
+                                </select>
                             </div>
+
+                           <div class="col-md-2">
+                                <select name="Nm_kelas[]" class="form-control">
+                                    <option selected disabled>--Pilih Kelas--</option>
+                                    <?php
+                                        $data = mysqli_query($koneksi, "SELECT * FROM kelas");
+                                        while ($d = mysqli_fetch_array($data)) {
+                                        ?>
+                                            <option value="<?= $d['Id_kelas']; ?>">
+                                                <?= $d['Nm_kelas']; ?>
+                                            </option>
+                                        <?php } ?>
+                                </select></div>
                         </div>
                     </div>
                     <button type="button" class="btn btn-info" onclick="tambahBaris()">+ Tambah Mapel</button>
