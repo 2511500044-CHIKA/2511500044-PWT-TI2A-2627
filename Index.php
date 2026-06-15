@@ -3,6 +3,10 @@ ob_start();
 session_start();
 require_once("config/koneksi.php");
 if (isset($_SESSION['username'])) {
+  $Username = $_SESSION['Username'];
+  $query = mysqli_query($koneksi, "SELECT * FROM users WHERE Username='$Username'");
+  $result = mysqli_fetch_array($query);
+  $Role = $result['Role'];
 ?>
 
   <!DOCTYPE html>
@@ -162,6 +166,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
             </li>
+            
+                <li class="nav-item menu-open">
+                  <a href="#" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                      Transaksi
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="index.php?page=users" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Users</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                 <?php endif; ?>
+                <?php if ($Role == 'guru') : ?>
+                  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item menu-open">
+                      <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                          Master
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
+                      </a>
+                    <li class="nav-item">
+                      <a href="index.php?page=ganti_password" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Ganti password</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="index.php?page=jadwal_kelas" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Jadwal kelas</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              <?php endif; ?>
+              <?php if ($Role == 'siswa') : ?>
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item menu-open">
+                      <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                          Master
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
+                      </a>
+                <li class="nav-item">
+                  <a href="index.php?page=ganti_password" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Ganti password</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="index.php?page=siswa/jadwal_kelas_siswa" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Jadwal kelas</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          <?php endif; ?>
             <li class="nav-item">
               <a href="logout.php" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>
