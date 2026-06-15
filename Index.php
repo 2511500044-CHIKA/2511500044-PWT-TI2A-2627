@@ -3,10 +3,10 @@ ob_start();
 session_start();
 require_once("config/koneksi.php");
 if (isset($_SESSION['username'])) {
-  $Username = $_SESSION['Username'];
-  $query = mysqli_query($koneksi, "SELECT * FROM users WHERE Username='$Username'");
+  $username = $_SESSION['username'];
+  $query = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username'");
   $result = mysqli_fetch_array($query);
-  $Role = $result['Role'];
+  $role = $result['role'];
 ?>
 
   <!DOCTYPE html>
@@ -108,6 +108,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
 
           <!-- Sidebar Menu -->
+            <?php if ($role == 'admin') : ?>
+            <!-- Sidebar Menu -->
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
@@ -166,7 +168,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
             </li>
-            
                 <li class="nav-item menu-open">
                   <a href="#" class="nav-link active">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -185,7 +186,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </ul>
                 </li>
                  <?php endif; ?>
-                <?php if ($Role == 'guru') : ?>
+                <?php if ($role == 'guru') : ?>
                   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item menu-open">
                       <a href="#" class="nav-link active">
@@ -210,7 +211,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </ul>
                 </li>
               <?php endif; ?>
-              <?php if ($Role == 'siswa') : ?>
+              <?php if ($role == 'siswa') : ?>
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item menu-open">
                       <a href="#" class="nav-link active">
@@ -340,4 +341,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <?php
 } else {
   echo "<meta http-equiv='refresh'content='0 url =login.php'>";
-} ?>
+}
+ ?>
