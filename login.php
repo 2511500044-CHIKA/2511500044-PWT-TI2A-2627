@@ -73,23 +73,23 @@ session_start();
 
 </html>
 <?php
-$usersname = $_POST['usersname'] ?? null;
+$username = $_POST['username'] ?? null;
 $password = $_POST['password'] ?? null;
 
-if ($usersname == true) {
-  $usersquary = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM users WHERE usersname='$usersname'"));
+if ($username == true) {
+  $userquary = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username'"));
 
-  if ($usersquary) {
+  if ($userquary) {
 
-    if ($password == $usersquary['password']) {
-      $_SESSION['level'] = $usersquary['role'];
-      $_SESSION['usersname'] = $usersquary['usersname'];
+    if ($password == $userquary['password']) {
+      $_SESSION['level'] = $userquary['role'];
+      $_SESSION['username'] = $userquary['username'];
 
-      if ($usersquary['role'] == 'admin') {
+      if ($userquary['role'] == 'admin') {
         header("location:index.php");
-      } else if ($usersquary['role'] == 'guru' || $usersquary['role'] == 'siswa') {
+      } else if ($userquary['role'] == 'guru' || $userquary['role'] == 'siswa') {
 
-        if ($usersquary['password'] == '1234') {
+        if ($userquary['password'] == '1234') {
           header("location: index.php?page=ganti_password");
         } else {
           header("location:index.php");
