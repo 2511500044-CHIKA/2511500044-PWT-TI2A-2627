@@ -77,7 +77,8 @@ $username = $_POST['username'] ?? null;
 $password = $_POST['password'] ?? null;
 
 if ($username == true) {
-  $userquary = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM user WHERE username='$username'"));
+  $userquary = mysqli_fetch_array
+  (mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username'"));
 
   if ($userquary) {
 
