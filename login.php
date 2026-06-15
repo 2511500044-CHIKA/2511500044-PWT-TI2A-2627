@@ -32,7 +32,7 @@ session_start();
 
         <form action="login.php" method="post">
           <div class="input-group mb-3">
-            <input type="text" name="Username" class="form-control" placeholder="Username">
+            <input type="text" name="username" class="form-control" placeholder="username">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-envelope"></span>
@@ -41,7 +41,7 @@ session_start();
           </div>
 
           <div class="input-group mb-3">
-            <input type="Password" name="Password" class="form-control" placeholder="Password">
+            <input type="password" name="password" class="form-control" placeholder="password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
