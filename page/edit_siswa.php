@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "config/koneksi.php"
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -13,7 +13,8 @@ include "config/koneksi.php";
 
     <?php
     $kd = $_GET['kd'];
-    $edit = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM siswa WHERE Nis='$kd'"));
+    $query = mysqli_query($koneksi, "SELECT siswa.*, kelas.Nm_kelas FROM siswa JOIN kelas ON siswa.Id_kelas = kelas.Id_kelas WHERE siswa.Nis = '$kd' ");
+    $edit = mysqli_fetch_assoc($query);
 
     if(isset($_POST['tambah'])){
         $nis = $_POST['Nis'];
@@ -53,11 +54,11 @@ include "config/koneksi.php";
                         </div>
                         <div class="form-group">
                             <label for="Id_user">Id User:</label>
-                            <input type="text" name="Id_user" id="Id_user" value="<?= $edit['Id_user']; ?>" placeholder="Masukkan Id User" class="form-control">
+                            <input type="text" name="Id_user" value="<?= $edit['Id_user']; ?>" placeholder="Masukkan Id User" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label for="Nm_siswa">Nama Siswa:</label>
-                            <input type="text" name="Nm_siswa" id="Nm_siswa" value="<?= $edit['Nm_siswa']; ?>" placeholder="Masukkan Nama Siswa" class="form-control">
+                            <input type="text" name="Nm_siswa" value="<?= $edit['Nm_siswa']; ?>" placeholder="Masukkan Nama Siswa" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Jenkel">Jenis Kelamin:</label>
@@ -69,12 +70,36 @@ include "config/koneksi.php";
                         </div>
                         <div class="form-group">
                             <label for="Hp">No HP:</label>
-                            <input type="number" name="Hp" id="Hp" value="<?= $edit['Hp']; ?>" placeholder="Masukkan No HP" class="form-control">
+                            <input type="text" name="Hp" id="Hp" value="<?= $edit['Hp']; ?>" placeholder="Masukkan No HP" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="Id_kelas">Id Kelas:</label>
-                            <input type="text" name="Id_kelas" id="Id_kelas" value="<?= $edit['Id_kelas']; ?>" placeholder="Masukkan Id Kelas" class="form-control">
-                        </div>
+                            <select name="Id_kelas" class="form-control" required>
+                                <option value="">-- Pilih Kelas --</option>
+                                <option value="<?= $edit['Id_kelas']; ?>" selected><?= $edit['Id_kelas']; ?></option>
+                                <?php
+                                $data = mysqli_query($koneksi, "SELECT * FROM kelas");
+                                while ($d = mysqli_fetch_array($data)) {
+                                ?>
+                                            <option value="<?= $d['Id_kelas']; ?>">
+                                                <?= $d['Id_kelas']; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select></div>
+                        <div class="form-group">
+                            <label for="Nm_kelas">Nama Kelas:</label>
+                            <select name="Nm_kelas" class="form-control" required>
+                                <option value="">-- Pilih Kelas --</option>
+                                <option value="<?= $edit['Nm_kelas']; ?>" selected><?= $edit['Nm_kelas']; ?></option>
+                                <?php
+                                $data = mysqli_query($koneksi, "SELECT * FROM kelas");
+                                while ($d = mysqli_fetch_array($data)) {
+                                ?>
+                                            <option value="<?= $d['Nm_kelas']; ?>">
+                                                <?= $d['Nm_kelas']; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select></div>
                         <div class="card-footer">
                             <input type="submit" name="tambah" class="btn btn-primary" value="Simpan">
                             <a href="index.php?page=siswa" class="btn btn-danger">Batal</a>

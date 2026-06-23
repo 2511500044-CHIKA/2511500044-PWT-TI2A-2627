@@ -1,5 +1,5 @@
 <?php
-include "config/koneksi.php";
+include "config/koneksi.php"
 ?>
 <div class="content-header">
     <div class="container-fluid">
@@ -41,12 +41,14 @@ if (isset($_GET['action'])) {
                             <th style="text-align: center;">Jenis Kelamin</th>
                             <th style="text-align: center;">Hp</th>
                             <th style="text-align: center;">Id Kelas</th>
+                            <th style="text-align: center;">Nama Kelas</th>
                             <th style="text-align: center;">Aksi</th>
                         </tr>
                     </tread>
                     <?php
                     $no = 0;
                     $query = mysqli_query($koneksi, "SELECT * FROM siswa");
+                    $kelasQuery = mysqli_query($koneksi, "SELECT * FROM kelas JOIN siswa ON kelas.Id_kelas = siswa.Id_kelas");
                     while ($result = mysqli_fetch_array($query)) {
                         $no++;
                     ?>
@@ -59,6 +61,19 @@ if (isset($_GET['action'])) {
                                 <td><?= $result['Jenkel']; ?></td>
                                 <td><?= $result['Hp']; ?></td>
                                 <td><?= $result['Id_kelas']; ?></td>
+                                <td>
+                                    <?php
+                                    $kelasId = $result['Id_kelas'];
+                                    $kelasName = '';
+                                    while ($kelasResult = mysqli_fetch_array($kelasQuery)) {
+                                        if ($kelasResult['Id_kelas'] == $kelasId) {
+                                            $kelasName = $kelasResult['Nm_kelas'];
+                                            break;
+                                        }
+                                    }
+                                    echo $kelasName;
+                                    ?>
+                                </td>
                                 <td>
                                     <a href="index.php?page=siswa&action=hapus&kd=<?= $result['Nis']; ?>" title ="">
                                             <span class=" badge badge-danger">Hapus</span></a>

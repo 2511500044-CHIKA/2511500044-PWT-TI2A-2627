@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include "config/koneksi.php";
 ?>
 <div class="content-header">
